@@ -24,19 +24,7 @@ pipeline {
 
             }
 
-             post {
-
-                success {
-
-                    mail to: "drpahwa25@gmail.com",
-
-                    subject: "Test success",
-
-                    body: "Test Success"
-
-                }
-
-            }
+             
 
         }
 
