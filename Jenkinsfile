@@ -1,43 +1,81 @@
 pipeline {
-
     agent any
 
- 
-
-    stages {
-
-        stage('Build') {
-
-            steps {
-
-                echo "Building"
-
-            }
-
-        }
-
-        stage('Unit and Integration Tests') {
-
-            steps {
-
-                echo "Unit Testing"
-
-            }
-
-             
-
-        }
-
-        stage('Code Analysis') {
-
-            steps {
-
-                echo "Running Code Analysis"
-
-            }
-
-        }
-
+    environment {
+        DIRECTORY_PATH = "/path/to/code/directory"
+        TESTING_ENVIRONMENT = "TestingEnv"
+        PRODUCTION_ENVIRONMENT = "YourNameProdEnv"
     }
 
+    stages {
+        stage('Build') {
+            steps {
+                echo "Fetching the source code from the directory path: ${env.DIRECTORY_PATH}"
+                echo "Compiling the code and generating artifacts"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    echo "Running unit tests"
+                    // Add your unit test command here
+                    echo "Running integration tests"
+                    // Add your integration test command here
+                }
+            }
+            post {
+                success {
+                    mail to: "drpahwa25@gmail.com",
+                    subject: "Test success",
+                    body: "Test Success"
+                }
+            }
+        }
+
+        stage('Code Quality Check') {
+            steps {
+                script {
+                    echo "Checking the quality of the code"
+                    // Add your code quality check commands here
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    echo "Deploying the application to ${env.TESTING_ENVIRONMENT}"
+                    // Add your deployment steps for testing environment here
+                }
+            }
+        }
+
+        stage('Approval') {
+            steps {
+                script {
+                    echo "Waiting for manual approval..."
+                    // Add manual approval steps here
+                }
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                script {
+                    echo "Deploying the code to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
+                    // Add your deployment steps for production environment here
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline executed successfully"
+        }
+        failure {
+            echo "Pipeline execution failed"
+        }
+    }
 }
