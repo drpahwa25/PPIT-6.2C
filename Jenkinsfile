@@ -17,8 +17,12 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "Running unit tests"
-                echo "Running integration tests"
+                script {
+                    echo "Running unit tests"
+                    // Add your unit test command here
+                    echo "Running integration tests"
+                    // Add your integration test command here
+                }
             }
             post {
                 success {
@@ -31,29 +35,37 @@ pipeline {
 
         stage('Code Quality Check') {
             steps {
-                echo "Checking the quality of the code"
-                // You can add code quality checks here
+                script {
+                    echo "Checking the quality of the code"
+                    // Add your code quality check commands here
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying the application to ${env.TESTING_ENVIRONMENT}"
-                // Add deployment steps here
+                script {
+                    echo "Deploying the application to ${env.TESTING_ENVIRONMENT}"
+                    // Add your deployment steps for testing environment here
+                }
             }
         }
 
         stage('Approval') {
             steps {
-                echo "Waiting for manual approval..."
-                // Add manual approval steps here
+                script {
+                    echo "Waiting for manual approval..."
+                    // Add manual approval steps here
+                }
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo "Deploying the code to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
-                // Add production deployment steps here
+                script {
+                    echo "Deploying the code to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
+                    // Add your deployment steps for production environment here
+                }
             }
         }
     }
