@@ -24,11 +24,19 @@ pipeline {
                 }
             }
             post {
-                success {
-                    mail to: "drpahwa25@gmail.com",
-                    subject: "Test success",
-                    body: "Test Success"
+
+                always {
+
+                  emailext attachLog: true,
+
+                  body: 'Test successful',
+
+                  subject: 'Test Success',
+
+                  to: 'drpahwa25@gmail.com'
+
                 }
+
             }
         }
 
