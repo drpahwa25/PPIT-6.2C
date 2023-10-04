@@ -20,7 +20,7 @@ pipeline {
                 script {
                     echo "Running unit tests"
                     echo "Running integration tests"
-                    // Add your integration test command here
+                    
                 }
             }
             post {
