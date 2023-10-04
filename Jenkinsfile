@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Building') {
             steps {
                 echo "Fetching the source code from the directory path: ${env.DIRECTORY_PATH}"
                 echo "Compiling the code and generating artifacts"
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     echo "Checking the quality of the code"
-                    // Add your code quality check commands here
+                    
                 }
             }
         }
