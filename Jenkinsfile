@@ -19,7 +19,6 @@ pipeline {
             steps {
                 script {
                     echo "Running unit tests"
-                    // Add your unit test command here
                     echo "Running integration tests"
                     // Add your integration test command here
                 }
